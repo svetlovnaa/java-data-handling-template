@@ -13,7 +13,8 @@ public class SimpleTextService implements TextService {
      */
     @Override
     public String removeString(String base, String remove) {
-        return null; //TODO
+
+        return base.replace(remove, "");
     }
 
     /**
@@ -24,7 +25,8 @@ public class SimpleTextService implements TextService {
      */
     @Override
     public boolean isQuestionString(String text) {
-        return false; //TODO
+
+        return text.endsWith("?");
     }
 
     /**
@@ -35,7 +37,14 @@ public class SimpleTextService implements TextService {
      */
     @Override
     public String concatenate(String... elements) {
-        return null; //TODO
+
+       StringBuilder stringBuilder = new StringBuilder();
+        for (int i  = 0; i < elements.length; i++) {
+
+            stringBuilder.append(elements[i]);
+        }
+
+        return stringBuilder.toString();
     }
 
     /**
@@ -47,7 +56,17 @@ public class SimpleTextService implements TextService {
      */
     @Override
     public String toJumpCase(String text) {
-        return null; //TODO
+
+        char[] textToChar = text.toCharArray();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < textToChar.length; i++) {
+            if (i % 2 == 0) {
+                textToChar[i] = Character.toLowerCase(textToChar[i]);
+            } else {
+                textToChar[i] = Character.toUpperCase(textToChar[i]);
+            }
+        }
+        return stringBuilder.append(textToChar).toString();
     }
 
     /**
@@ -59,6 +78,19 @@ public class SimpleTextService implements TextService {
      */
     @Override
     public boolean isPalindrome(String string) {
-       return false; //TODO
+
+        if (string == null) {
+            return false;
+        }
+        int i = 0;
+        int j = string.length() - 1;
+        while (i < j) {
+            if (string.charAt(i++) != string.charAt(j--)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+       return false;
     }
 }
